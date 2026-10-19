@@ -1,0 +1,25 @@
+{
+  // Lets Windows students without WSL2 run this lab too:
+  // on the GitHub repo page click "Code" -> "Codespaces" -> "Create codespace on main",
+  // and a Linux environment with forge/cast/anvil/make already installed opens in the browser.
+  // See the Windows track in the README setup section.
+  "name": "RWA Lab (COMP7810)",
+
+  // context must be the repo root: the Dockerfile COPYs scripts/install-foundry-cn.sh
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+
+  // the debian base image is already root, and foundry installs to /usr/local/bin
+  "remoteUser": "root",
+
+  // run the self-check as soon as the container is up — students land straight on the ✓/✗ and the fix commands
+  "postCreateCommand": "bash scripts/doctor.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": ["NomicFoundation.hardhat-solidity"]
+    }
+  }
+}
